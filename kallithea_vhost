@@ -1,0 +1,31 @@
+upstream kallithea {
+    server 127.0.0.1:5000;
+}
+
+server {
+    listen          80;
+    access_log      /kallithea/logs/kallithea.access.log;
+    error_log       /kallithea/logs/kallithea.error.log;
+
+    #proxy config
+    proxy_buffering             off;
+    proxy_connect_timeout       7200;
+    proxy_send_timeout          7200;
+    proxy_read_timeout          7200;
+    proxy_buffers               8 32k;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    client_max_body_size        1024m;
+    client_body_buffer_size     128k;
+    large_client_header_buffers 8 64k;
+
+    location / {
+        try_files $uri @kallithea;
+    }
+
+    location @kallithea {
+        proxy_pass http://kallithea;
+        include /etc/nginx/proxy_params;
+    }
+}
