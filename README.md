@@ -16,6 +16,13 @@ You can specify some environment variables:
 * `KALLITHEA_ADMIN_PASS` - administrator password (default: `admin`)
 * `KALLITHEA_ADMIN_MAIL` - administrator e-mail (default: `admin@example.com`)
 
+If you don't have kallithea configuration file (running first time or without mounting a configuration volume), 
+you can set additional variables:
+
+* `KALLITHEA_PREFIX` - set resources prefix 
+  (empty by default, see [documentation](http://docs.kallithea-scm.org/en/latest/setup.html#apache-as-subdirectory))
+* `KALLITHEA_LANG` - set language (empty by default, can be one of `cs de fr hu ja nl_BE pl pt_BR ru sk zh_CN zh_TW`)
+
 Available volumes:
 
 * `/kallithea/config` - contains configuration file (`kallithea.ini`) and SQLite database 

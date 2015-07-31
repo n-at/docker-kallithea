@@ -9,6 +9,7 @@ cd /kallithea/config
 if [ ! -e kallithea.ini ]; then
     echo "Creating configuration file..."
     paster make-config Kallithea kallithea.ini
+    KALLITHEA_NO_INI=1
 fi
 
 if [ ! -e kallithea.db ]; then
@@ -19,6 +20,23 @@ if [ ! -e kallithea.db ]; then
         --email=${KALLITHEA_ADMIN_MAIL} \
         --repos=/kallithea/repos \
         --force-yes
+fi
+
+if [ -n "$KALLITHEA_NO_INI" ]; then
+    #rc prefix
+    if [ -n "$KALLITHEA_PREFIX" ]; then
+        echo "Changing rc prefix to ${KALLITHEA_PREFIX}"
+        sed -i "s/#filter-with/filter-with/1" kallithea.ini
+        echo "[filter:proxy-prefix]" >> kallithea.ini
+        echo "use = egg:PasteDeploy#prefix" >> kallithea.ini
+        echo "prefix = ${KALLITHEA_PREFIX}" >> kallithea.ini
+    fi
+
+    #ui language
+    if [ -n "$KALLITHEA_LANG" ]; then
+        echo "Setting language to ${KALLITHEA_LANG}"
+        sed -i "s/^lang =/lang = ${KALLITHEA_LANG}/1" kallithea.ini
+    fi
 fi
 
 paster serve --log-file=/kallithea/logs/paster.log kallithea.ini &
