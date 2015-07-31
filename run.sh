@@ -9,10 +9,14 @@ cd /kallithea/config
 if [ ! -e kallithea.ini ]; then
     echo "Creating configuration file..."
     paster make-config Kallithea kallithea.ini
-    KALLITHEA_NO_INI=1
-fi
 
-if [ ! -e kallithea.db ]; then
+    #external database
+    if [ -n "$KALLITHEA_EXTERNAL_DB" ]; then
+        echo "Setting db connection string..."
+        DB_ESC=$(echo "$KALLITHEA_EXTERNAL_DB" | sed -e 's/[\/&]/\\&/g')
+        sed -i "s/^sqlalchemy\.db1\.url = .*/sqlalchemy.db1.url = ${DB_ESC}/1" kallithea.ini
+    fi
+
     echo "Creating database..."
     paster setup-db kallithea.ini \
         --user=${KALLITHEA_ADMIN_USER} \
@@ -20,9 +24,7 @@ if [ ! -e kallithea.db ]; then
         --email=${KALLITHEA_ADMIN_MAIL} \
         --repos=/kallithea/repos \
         --force-yes
-fi
 
-if [ -n "$KALLITHEA_NO_INI" ]; then
     #rc prefix
     if [ -n "$KALLITHEA_PREFIX" ]; then
         echo "Changing rc prefix to ${KALLITHEA_PREFIX}"
