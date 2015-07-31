@@ -22,11 +22,13 @@ you can set additional variables:
 * `KALLITHEA_PREFIX` - set resources prefix 
   (empty by default, see [documentation](http://docs.kallithea-scm.org/en/latest/setup.html#apache-as-subdirectory))
 * `KALLITHEA_LANG` - set language (empty by default, can be one of `cs de fr hu ja nl_BE pl pt_BR ru sk zh_CN zh_TW`)
+* `KALLITHEA_EXTERNAL_DB` - connection string for external database instead of built-in SQLite (empty by default, 
+   currently MySQL and PostgreSQL are supported, 
+   see [sqlalchemy documentation](http://docs.sqlalchemy.org/en/rel_1_0/dialects/index.html) for examples)
 
 Available volumes:
 
-* `/kallithea/config` - contains configuration file (`kallithea.ini`) and SQLite database 
-  (`kallithea.db`).
+* `/kallithea/config` - contains configuration file (`kallithea.ini`).
 * `/kallithea/repos` - contains repositories.
 * `/kallithea/logs` - contains log files.
 

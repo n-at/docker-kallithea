@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y python python-pip mercurial git \
-                       python-dev software-properties-common && \
+                       python-dev software-properties-common libmysqlclient-dev libpq-dev && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
     apt-get install -y nginx && \
@@ -21,6 +21,9 @@ RUN apt-get update && \
     rm -r .hg && \
     python setup.py develop && \
     python setup.py compile_catalog && \
+    \
+    pip install mysql-python && \
+    pip install psycopg2 && \
     \
     apt-get purge --auto-remove -y python-dev software-properties-common && \
     \
