@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y python python-pip mercurial git \
+    apt-get install -y python python-pip python-ldap mercurial git \
                        python-dev software-properties-common libmysqlclient-dev libpq-dev && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
