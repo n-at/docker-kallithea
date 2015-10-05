@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y python python-pip python-ldap mercurial git \
+    apt-get install -y python python-pip python-ldap mercurial git wget \
                        python-dev software-properties-common libmysqlclient-dev libpq-dev && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
@@ -15,17 +15,17 @@ RUN apt-get update && \
     \
     mkdir /kallithea && \
     cd /kallithea && \
-    mkdir -m 0777 config repos logs && \
-    hg clone https://kallithea-scm.org/repos/kallithea -u stable && \
+    mkdir -m 0777 config repos logs kallithea && \
+    wget https://pypi.python.org/packages/source/K/Kallithea/Kallithea-0.3.tar.gz && \
+    tar -xf Kallithea-0.3.tar.gz -C kallithea --strip-components 1 && \
     cd kallithea && \
-    rm -r .hg && \
     python setup.py develop && \
     python setup.py compile_catalog && \
     \
     pip install mysql-python && \
     pip install psycopg2 && \
     \
-    apt-get purge --auto-remove -y python-dev software-properties-common && \
+    apt-get purge --auto-remove -y python-dev software-properties-common wget && \
     \
     rm /etc/nginx/sites-enabled/*
 
