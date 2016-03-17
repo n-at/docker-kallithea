@@ -6,7 +6,7 @@ Image contains [kallithea](https://kallithea-scm.org/) source code management sy
 Available tags:
 
 * [atnurgaliev/kallithea:latest](https://github.com/n-at/docker-kallithea/tree/master) - latest version from `stable` branch
-* [atnurgaliev/kallithea:0.3](https://github.com/n-at/docker-kallithea/tree/v0.3) - stable 0.3 version from PyPI
+* [atnurgaliev/kallithea:0.3.1](https://github.com/n-at/docker-kallithea/tree/v0.3) - stable 0.3.1 version from PyPI
 * [atnurgaliev/kallithea:0.2](https://github.com/n-at/docker-kallithea/tree/v0.2) - stable 0.2 version from PyPI
 
 Usage

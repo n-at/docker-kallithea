@@ -11,7 +11,6 @@ RUN apt-get update && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
     apt-get install -y nginx && \
-    python -m pip install --upgrade setuptools && \
     \
     mkdir /kallithea && \
     cd /kallithea && \
@@ -19,7 +18,8 @@ RUN apt-get update && \
     hg clone https://kallithea-scm.org/repos/kallithea -u stable && \
     cd kallithea && \
     rm -r .hg && \
-    python setup.py develop && \
+    pip install --upgrade pip setuptools && \
+    pip install -e . && \
     python setup.py compile_catalog && \
     \
     pip install mysql-python && \
