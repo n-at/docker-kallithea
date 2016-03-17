@@ -11,15 +11,15 @@ RUN apt-get update && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
     apt-get install -y nginx && \
-    python -m pip install --upgrade setuptools && \
     \
     mkdir /kallithea && \
     cd /kallithea && \
     mkdir -m 0777 config repos logs kallithea && \
-    wget https://pypi.python.org/packages/source/K/Kallithea/Kallithea-0.3.tar.gz && \
-    tar -xf Kallithea-0.3.tar.gz -C kallithea --strip-components 1 && \
+    wget https://pypi.python.org/packages/source/K/Kallithea/Kallithea-0.3.1.tar.bz2 && \
+    tar -xf Kallithea-0.3.1.tar.bz2 -C kallithea --strip-components 1 && \
     cd kallithea && \
-    python setup.py develop && \
+    pip install --upgrade pip setuptools && \
+    pip install -e . && \
     python setup.py compile_catalog && \
     \
     pip install mysql-python && \
