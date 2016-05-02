@@ -1,4 +1,4 @@
-Docker Kallithea version 0.3.1
+Docker Kallithea version 0.3.2
 ==============================
 
 Image contains [kallithea](https://kallithea-scm.org/) source code management system.
