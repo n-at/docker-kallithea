@@ -19,6 +19,7 @@ RUN apt-get update && \
     tar -xf Kallithea-0.3.2.tar.gz -C kallithea --strip-components 1 && \
     cd kallithea && \
     pip install --upgrade pip setuptools && \
+    python -m pip install --upgrade --force pip && \
     pip install -e . && \
     python setup.py compile_catalog && \
     \
