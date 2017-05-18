@@ -4,6 +4,11 @@ KALLITHEA_ADMIN_USER=${KALLITHEA_ADMIN_USER:-"admin"}
 KALLITHEA_ADMIN_PASS=${KALLITHEA_ADMIN_PASS:-"admin"}
 KALLITHEA_ADMIN_MAIL=${KALLITHEA_ADMIN_MAIL:-"admin@example.com"}
 
+LANG=${KALLITHEA_LOCALE:-"ru_RU.UTF-8"}
+
+export LANG
+locale-gen --lang ${LANG}
+
 cd /kallithea/config
 
 if [ ! -e kallithea.ini ]; then
