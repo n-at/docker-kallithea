@@ -18,7 +18,7 @@ RUN apt-get update && \
     hg clone https://kallithea-scm.org/repos/kallithea -u stable && \
     cd kallithea && \
     rm -r .hg && \
-    pip install --upgrade pip setuptools && \
+    python -m pip install --upgrade --force pip && \
     pip install -e . && \
     python setup.py compile_catalog && \
     \
