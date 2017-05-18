@@ -11,7 +11,7 @@ RUN apt-get update && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
     apt-get install -y nginx && \
-    python -m pip install --upgrade setuptools && \
+    python -m pip install --upgrade --force pip && \
     \
     mkdir /kallithea && \
     cd /kallithea && \
