@@ -15,9 +15,9 @@ RUN apt-get update && \
     mkdir /kallithea && \
     cd /kallithea && \
     mkdir -m 0777 config repos logs kallithea && \
-    wget https://pypi.io/packages/72/b3/a135896270360385ae5b47a5a7d119e90143334e30d93fb68c26ec59edfc/Kallithea-0.3.2.tar.gz && \
-    tar -xf Kallithea-0.3.2.tar.gz -C kallithea --strip-components 1 && \
+    hg clone https://kallithea-scm.org/repos/kallithea -u 0.3.3 && \
     cd kallithea && \
+    rm -r .hg && \
     python -m pip install --upgrade --force pip && \
     pip install -e . && \
     python setup.py compile_catalog && \
