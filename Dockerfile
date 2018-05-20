@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 MAINTAINER Alexey Nurgaliev <atnurgaliev@gmail.com>
 
@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y python python-pip python-ldap mercurial git wget \
+    apt-get install -y python python-pip python-ldap mercurial git wget locales \
                        python-dev software-properties-common libmysqlclient-dev libpq-dev && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
@@ -15,7 +15,7 @@ RUN apt-get update && \
     mkdir /kallithea && \
     cd /kallithea && \
     mkdir -m 0777 config repos logs kallithea && \
-    hg clone https://kallithea-scm.org/repos/kallithea -u 0.3.3 && \
+    hg clone https://kallithea-scm.org/repos/kallithea -u 0.3.4 && \
     cd kallithea && \
     rm -r .hg && \
     python -m pip install --upgrade --force pip && \
