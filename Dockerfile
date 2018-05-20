@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 MAINTAINER Alexey Nurgaliev <atnurgaliev@gmail.com>
 
@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y python python-pip python-ldap mercurial git \
+    apt-get install -y python python-pip python-ldap mercurial git locales \
                        python-dev software-properties-common libmysqlclient-dev libpq-dev && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \
