@@ -22,7 +22,7 @@ You can specify some environment variables:
 * `KALLITHEA_ADMIN_PASS` - administrator password (default: `admin`)
 * `KALLITHEA_ADMIN_MAIL` - administrator e-mail (default: `admin@example.com`)
 * `KALLITHEA_LOCALE` - set locale to properly display Mercurial commit messages
-   with non-ASCII symbols ("ru_RU.UTF-8" by default)
+   with non-ASCII symbols ("en_US.UTF-8" by default)
 
 If you don't have kallithea configuration file (running first time or without mounting a configuration volume), 
 you can set additional variables:

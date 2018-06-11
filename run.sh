@@ -4,7 +4,7 @@ KALLITHEA_ADMIN_USER=${KALLITHEA_ADMIN_USER:-"admin"}
 KALLITHEA_ADMIN_PASS=${KALLITHEA_ADMIN_PASS:-"admin"}
 KALLITHEA_ADMIN_MAIL=${KALLITHEA_ADMIN_MAIL:-"admin@example.com"}
 
-LANG=${KALLITHEA_LOCALE:-"ru_RU.UTF-8"}
+LANG=${KALLITHEA_LOCALE:-"en_US.UTF-8"}
 
 export LANG
 locale-gen --lang ${LANG}
@@ -44,6 +44,9 @@ if [ ! -e kallithea.ini ]; then
         echo "Setting language to ${KALLITHEA_LANG}"
         sed -i "s/^lang =/lang = ${KALLITHEA_LANG}/1" kallithea.ini
     fi
+
+    #cookie expiration time
+    sed -ri 's/^(beaker.session.timeout =.*)$/\1\nbeaker.session.cookie_expires = 2592000/1' kallithea.ini
 fi
 
 paster serve --log-file=/kallithea/logs/paster.log kallithea.ini &
