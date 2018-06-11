@@ -15,7 +15,7 @@ RUN apt-get update && \
     mkdir /kallithea && \
     cd /kallithea && \
     mkdir -m 0777 config repos logs kallithea && \
-    hg clone https://kallithea-scm.org/repos/kallithea -u 0.3.4 && \
+    hg clone https://kallithea-scm.org/repos/kallithea -u 0.3.5 && \
     cd kallithea && \
     rm -r .hg && \
     python -m pip install --upgrade --force pip && \
